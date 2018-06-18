@@ -2,7 +2,7 @@
 title: 'Семинар 6. Красотища'
 date: 'Июнь, 18, 2018'
 output:
-  html_document:
+ word_document:
     keep_md: no
     number_sections: yes
     toc: yes
@@ -114,12 +114,27 @@ waldtest(model_r, model_ur, vcov = vcovHC)
 используя корректировку `HC3`.
 А затем сравните две модели `house_r` и `house_ur` с учётом поправки на гетероскедастичность.
 
+
 ```{r}
-# coeftest(___, vcov. = ___, type = ____)
-# waldtest(___, ___, vcov =  vcovHC)
+house<-Housing
+house_ur <- lm(data =house, price ~ lotsize + bedrooms+prefarea)
+house_r<-lm(data=house, price~lotsize)
+# summary(___)
 ```
 
 
+```{r}
+#coeftest(house_ur, vcov. = house_ur, type = 'HC3')
+#waldtest(house_r, house_ur, vcov =  vcovHC)
+```
+
+#Тесты на гетероскедастичность
+
+```{r}
+#bptest(Pulse2 ~ Pulse1 + Smokes, varformula = Smokes, data = pulse_fct)
+
+```
+?lm
 
 # Инструментальные переменные
 
@@ -240,8 +255,8 @@ cig$lrincome <- log(cig$income / cig$population / cig$cpi)
 cig$lquant <- log(cig$packs)
 cig$tdiff <- (cig$taxs - cig$tax) / cig$cpi
 
-# glimpse(___)
-# skim(___)
+glimpse(cig)
+skim(cig)
 ```
 
 Постройте регрессию логарифма количества пачек сигарет на человека `lquant`
@@ -249,8 +264,8 @@ cig$tdiff <- (cig$taxs - cig$tax) / cig$cpi
 реальный налог `tdiff`.
 
 ```{r}
-# cig_iv1 <- ivreg(data = ___, ___ ~ ___ | ___)
-# summary(___, diagnostics = ___)
+#cig_iv1 <- ivreg(data = cig, lquant ~ lnprice | tdiff)
+#summary(cig_iv1, diagnostics = TRUE)
 ```
 
 Добавьте к объясняющим переменным логарифм реального дохода на душу населения
@@ -304,7 +319,7 @@ ggplot(data = pulse_fct, aes(x = Pulse1, y = Pulse2)) +
 ```
 
 Для примера процитируем несколько источников,
-@afanasyev92, @cobb2011teaching, @microsoftProject2008, @doe:website.
+@afanasyev92, @cobb2011teaching, @microsoftProject2008, @doe, @vakulenko2003versatility: website.
 
 Другие стилевые заготовки для оформления цитат можно скачать в архиве [zotero](https://www.zotero.org/styles).
 

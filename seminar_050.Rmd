@@ -154,7 +154,9 @@ summary(model_ur)
 и бинарную переменную `prefarea`, которая равна 1 для домов, расположенных в хороших районах.
 
 ```{r}
-# house_ur <- lm(data = ___, ___ ~ ___)
+house<-Housing
+house_ur <- lm(data =house, price ~ lotsize + bedrooms+prefarea)
+house_r<-lm(data=house, price~lotsize)
 # summary(___)
 ```
 
