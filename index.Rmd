@@ -1,0 +1,80 @@
+---
+title: "Введение в R. Весна-лето 2018."
+output: html_document
+lang: ru-RU
+---
+
+* Семинар 1, 24 мая. Загрузка и первое знакомство с данными:
+
+    - Условия и данные [sem_010.zip](https://github.com/bdemeshev/r_intro_2/raw/master/archives/sem_010.zip);
+    - [Решение семинара](http://bdemeshev.github.io/r_intro_2/seminar_010_solved.html);
+    - [Решение домашней работы](http://bdemeshev.github.io/r_intro_2/hw_010_solutions.html);
+    - Дополнительная домашняя работа [help_010.Rmd](http://bdemeshev.github.io/r_intro_2/help_010.Rmd) для новичков;
+
+* Семинар 2, 28 мая. Первичный анализ данных:
+
+    - Условия и данные [sem_020.zip](https://github.com/bdemeshev/r_intro_2/raw/master/archives/sem_020.zip);
+    - [Решение семинара](http://bdemeshev.github.io/r_intro_2/seminar_020_solved.html);
+    - [Решение домашней работы](http://bdemeshev.github.io/r_intro_2/hw_020_solutions.html);
+
+* Семинар 3, 31 мая. Кластерный анализ.
+
+    - Условия и данные [sem_030.zip](https://github.com/bdemeshev/r_intro_2/raw/master/archives/sem_030.zip);
+    - [Решение семинара](http://bdemeshev.github.io/r_intro_2/seminar_030_solved.html);
+    - [Решение домашней работы](http://bdemeshev.github.io/r_intro_2/hw_030_solutions.html);
+
+
+* Семинар 4, 7 июня. Факторный анализ.
+
+    - Условия и данные [sem_040.zip](https://github.com/bdemeshev/r_intro_2/raw/master/archives/sem_040.zip);
+    - [Решение семинара](http://bdemeshev.github.io/r_intro_2/seminar_040_solved.html);
+    - [Решение домашней работы](http://bdemeshev.github.io/r_intro_2/hw_040_solutions.html);
+
+* !11 июня занятий не будет!
+
+* Семинар 5, 14 июня. Множественная регрессия.
+
+    - Условия и данные [sem_050.zip](https://github.com/bdemeshev/r_intro_2/raw/master/archives/sem_050.zip);
+    - [Решение семинара](http://bdemeshev.github.io/r_intro_2/seminar_050_solved.html);
+    - [Решение домашней работы](http://bdemeshev.github.io/r_intro_2/hw_050_solutions.html);
+
+* Семинар 6, 18 июня. Маркдаун и красивое представление результатов.
+
+    - [Инструкция](https://bdemeshev.github.io/installation/tinytex/tinytex.html) по установке tinytex 
+    - Условия и данные [sem_060.zip](https://github.com/bdemeshev/r_intro_2/raw/master/archives/sem_060.zip);
+
+* Семинар 7, 21 июня. Логистическая регрессия и классификация.
+* Семинар 8, 25 июня. Кросс-валидация.
+* Семинар 9, 28 июня. Разное и ответы на вопросы :)
+
+
+
+
+Место: Шаболовка 26, 4428. Приносите свои ноутбуки!!!
+
+
+Полезности:
+
+* Перед первым занятием установите [R + Rstudio по инструкции](http://bdemeshev.github.io/installation/r/R_installation.html)
+
+* Подборка [русскоязычных ресурсов](https://github.com/bdemeshev/r_links)
+* Таблица с [пожелалками и комментариями](http://docs.google.com/spreadsheets/d/15NOsoa23Cr56NzEi1AXf9ZmPHkCScq8cu35rf-selkk/edit)
+* Предыдущая [реинкарнация курса](http://bdemeshev.github.io/r_socio_hse/)
+
+
+
+<!--
+это мы скроем, чтобы народ не пугался
+* [stan / rstan](http://bdemeshev.github.io/installation/r_stan/r_stan_installation.html)
+* [Atom](https://atom.io/)
+* [Texlive](https://www.tug.org/texlive/)
+* [Anaconda](https://www.continuum.io/downloads)
+-->
+
+
+
+
+
+
+-------
+Созданные для данного курса материалы распространяются по лицензии [Creative Commons Attribution-NonCommercial-ShareAlike](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.ru)
