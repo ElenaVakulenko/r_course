@@ -225,6 +225,8 @@ plot(educ_lasso_fit,
 ```{r}
 rus <- geojson_read('data/russia.geojson', what = 'sp')
 class(rus)
+
+rus@data
 ```
 
 Добавим к каждому региону вектор из случайных чисел:
@@ -232,6 +234,7 @@ class(rus)
 ```{r}
 set.seed(777)
 rus@data <- mutate(rus@data, num = rnorm(n = 83, mean = 100, sd = 30))
+glimpse(rus@data)
 ```
 
 Укажем цвет для каждого региона и подпись, которая будет появляться при наведении мышкой:
@@ -240,7 +243,7 @@ pal <- colorNumeric('BuPu', NULL) # задаём палитру цветов
 
 rus@data <- mutate(rus@data, 
           reg_color = pal(num),
-          reg_label = paste0(name, ': ', formatC(num), ' попугаев'))
+          reg_label = paste0(name_latin, ': ', formatC(num), ' попугаев'))
 glimpse(rus@data)
 ```
 
@@ -319,49 +322,54 @@ geojson_write(rus, file = 'russia_new.geojson')
 Отберите из старой таблички `rus@data` только содержательные колонки:
 
 ```{r}
-# data_old <- rus@data %>% ___(name, num, cartodb_id)
-# glimpse(data_old)
+data_old <- rus@data %>% select(name_latin, num, cartodb_id)
+glimpse(data_old)
 ```
 
 Экспортируйте таблицу `data_old` c названиями регионов и их идентификаторами в формат `csv`:
 
-```{r}
-# ___
+```{r} 
+export(data_old, file = "data_for_map.xlsx") # не для русского Excel
+#write.csv2(data.otd, "old.csv")
 ```
 
 В экселе руками поменяйте столбец `num` и импортируйте эту таблицу обратно в R.
 
 ```{r}
-# new_data <- import(___)
+
+new_data <- import("data_for_map.xlsx")
+glimpse(new_data)
 ```
 
 Добавьте в таблицу `new_data` код цвета и подпись для каждого региона:
 ```{r}
+new_data2[13,"color_reg"]<-NA
 pal <- colorNumeric('BuPu', NULL) # задаём палитру цветов
 
-# new_data2 <- mutate(new_data, 
-#          ___ = pal(___),
-#          ___ = paste0(___, ': ', formatC(___)))
+new_data2 <- mutate(new_data, 
+          color_reg = pal(num),
+          title_reg = paste0(name_latin, ':', formatC(num)))
+new_data2[13,"color_reg"]<-"#e409ef"
 ```
 
 
 Подменяем старые данные внутри нашей карты отредактированными `new_data2`:
 
 ```{r}
-# rus@data <- ___
+rus@data <- new_data2
 ```
 
 И постройте карту России, раскрашенную по регионам в соответсвии с вашими данными.
 Добавьте легенду и подписи.
 
 ```{r}
-# rus %>%
-#   leaflet() %>%
-#   addTiles() %>% # инициализируем карту
-#   addPolygons(stroke = FALSE, fillColor = ~___, # раскрашиваем области
-#               label = ~___) %>% # добавляем подписи
-#   ___(pal = pal, values = ~num, title = '___') %>% # добавляем легенду
-#   ___(lng = 100, lat = 66, zoom = 2) # просим показывать Россию
+rus %>%
+  leaflet() %>%
+  addTiles() %>% # инициализируем карту
+  addPolygons(stroke = FALSE, fillColor = ~ color_reg, # раскрашиваем области               
+    label = ~ title_reg) %>% # добавляем подписи
+   addLegend(pal = pal, values = ~num, title = 'Численность') %>% # добавляем легенду
+   setView(lng = 100, lat = 66, zoom = 2) # просим показывать Россию
 ```
 
 
@@ -419,10 +427,12 @@ glimpse(rus_final)
 Базовый вариант карты России:
 
 ```{r}
+rus_final2 <- mutate(rus_final, pop_2016 = pop_2016/1000000)
+
 base <- ggplot(rus_final) +
   geom_polygon(aes(x = long, y = lat,
               fill = pop_2016, group = group), color = 'white') +
-  labs(x = '', y = '', fill = 'Население 2016', title = 'Население России')
+  labs(x = '', y = '', fill = 'Население 2016, млн', title = 'Население России')
 base
 ```
 
@@ -436,6 +446,8 @@ base + coord_quickmap()
 ```{r}
 base + coord_quickmap() + theme(legend.position = 'none')
 ```
+
+#options(scipen = 10000) штраф за переход в научную запись в изображении чисел
 
 * Упражнение 5.
 
